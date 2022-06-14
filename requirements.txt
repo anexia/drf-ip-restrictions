@@ -1,0 +1,11 @@
+# Package and package dependencies
+-e .
+
+# Development dependencies
+
+# TestApp dependencies
+
+django>=3.2,<4
+djangorestframework>=3.13,<4
+django-filter>=21.1,<22
+django-ipware>=4.0.2,<4.1
