@@ -7,26 +7,34 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='PartiallyPrivateInfo',
+            name="PartiallyPrivateInfo",
             fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
+                (
+                    "name",
+                    models.CharField(max_length=50, primary_key=True, serialize=False),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='PrivateInfo',
+            name="PrivateInfo",
             fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
+                (
+                    "name",
+                    models.CharField(max_length=50, primary_key=True, serialize=False),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='PublicInfo',
+            name="PublicInfo",
             fields=[
-                ('name', models.CharField(max_length=50, primary_key=True, serialize=False)),
+                (
+                    "name",
+                    models.CharField(max_length=50, primary_key=True, serialize=False),
+                ),
             ],
         ),
     ]

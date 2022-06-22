@@ -17,7 +17,7 @@ setup(
     description='A library that allows IP restrictions for views/endpoints in Django REST framework.',
     long_description=README,
     long_description_content_type='text/markdown',
-    url='https://github.com/anexia-it/drf-ip-restrictions',
+    url='https://github.com/anexia/drf-ip-restrictions',
     author='Alexandra Bruckner',
     author_email='abruckner@anexia-it.com',
     install_requires=[

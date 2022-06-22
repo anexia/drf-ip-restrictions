@@ -10,6 +10,8 @@ class TestSetup(SimpleTestCase):
         self.assertIn("drf_ip_restrictions", settings.INSTALLED_APPS)
 
     def test_models(self):
-        self.assertIs(apps.get_model('testapp', 'PublicInfo'), PublicInfo)
-        self.assertIs(apps.get_model('testapp', 'PrivateInfo'), PrivateInfo)
-        self.assertIs(apps.get_model('testapp', 'PartiallyPrivateInfo'), PartiallyPrivateInfo)
+        self.assertIs(apps.get_model("testapp", "PublicInfo"), PublicInfo)
+        self.assertIs(apps.get_model("testapp", "PrivateInfo"), PrivateInfo)
+        self.assertIs(
+            apps.get_model("testapp", "PartiallyPrivateInfo"), PartiallyPrivateInfo
+        )

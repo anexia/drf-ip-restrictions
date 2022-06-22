@@ -1,0 +1,76 @@
+name: Run linter and tests
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+        django-version:
+          - "3.2"
+          - "4.0"
+        drf-version:
+          - "3.12"
+          - "3.13"
+        exclude:
+          - python-version: "3.7"
+            django-version: "4.0"
+          - drf-version: "3.12"
+            django-version: "4.0"
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install codecov black
+
+    - name: Lint with black
+      run: black ./drf_ip_restrictions ./tests --check
+
+    - name: Install Django version
+      run: |
+        python -m pip install "Django==${{ matrix.django-version }}.*"
+
+    - name: Install DRF version
+      run: |
+        python -m pip install "djangorestframework==${{ matrix.drf-version }}.*"
+
+    - name: Python, Django and DRF versions
+      run: |
+        echo "Python ${{ matrix.python-version }} -> Django ${{ matrix.django-version }} -> DRF ${{ matrix.drf-version }}"
+        python --version
+        echo "Django: `django-admin --version`"
+        echo "DRF: `pip show djangorestframework|grep Version|sed s/Version:\ //`"
+
+    - name: Setup environment
+      run: |
+        pip install -e .
+
+    - name: Run tests
+      run: |
+        # prepare Django project: link all necessary data from the test project into the root directory
+        # Hint: Simply changing the directory does not work (leads to missing files in coverage report)
+        ln -s ./tests/testapp testapp
+        ln -s ./tests/core core
+        ln -s ./tests/manage.py manage.py
+
+        # run tests with coverage
+        coverage run --source='./drf_ip_restrictions' manage.py test
+        coverage report
+        coverage xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2

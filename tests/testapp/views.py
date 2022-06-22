@@ -4,7 +4,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .models import PublicInfo, PrivateInfo, PartiallyPrivateInfo
-from .serializers import PublicInfoSerializer, PrivateInfoSerializer, PartiallyPrivateInfoSerializer
+from .serializers import (
+    PublicInfoSerializer,
+    PrivateInfoSerializer,
+    PartiallyPrivateInfoSerializer,
+)
 
 
 class PublicInfoViewSet(viewsets.ModelViewSet):
@@ -15,7 +19,7 @@ class PublicInfoViewSet(viewsets.ModelViewSet):
 class PrivateInfoViewSet(viewsets.ModelViewSet):
     queryset = PrivateInfo.objects.all()
     serializer_class = PrivateInfoSerializer
-    permission_classes = (AllowedIpList, )
+    permission_classes = (AllowedIpList,)
 
 
 class PartiallyPrivateInfoViewSet(viewsets.ModelViewSet):
@@ -31,4 +35,4 @@ class PartiallyPrivateInfoViewSet(viewsets.ModelViewSet):
         url_path=r"private-insight",
     )
     def private_insight(self, request, *args, **kwargs):
-        return Response(status=200, data={'Test': 'OK'})
+        return Response(status=200, data={"Test": "OK"})
