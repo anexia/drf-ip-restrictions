@@ -36,7 +36,7 @@ DRF_IP_RESTRICTION_SETTINGS = {
 
 ## Usage
 
-Add the AllowedIpList class to any views / endpoints that should only provide access for the 
+Add the AllowedIpList class to any views / endpoints that should only provide access for the
 configured IP addresses, e.g. to restrict a view set:
 
 ```python
@@ -54,7 +54,7 @@ or to restrict only a single action:
 
 class MyViewSet(viewsets.ModelViewSet):
     ...
-    
+
     @action(
         detail=False,
         methods=["get"],
@@ -66,6 +66,17 @@ class MyViewSet(viewsets.ModelViewSet):
     def my_method(self, request, *args, **kwargs):
         # do stuff and return rest_framework.response.Response in the end
 ```
+## Auto-formatter setup
+We use ruff (https://github.com/astral-sh/ruff) for local auto-formatting and for linting in the CI pipeline.
+The pre-commit framework (https://pre-commit.com) provides GIT hooks for these tools, so they are automatically applied
+before every commit.
+
+Steps to activate:
+* Install the pre-commit framework: `pip install pre-commit` (for alternative installation options see https://pre-commit.com/#install)
+* Activate the framework (from the root directory of the repository): `pre-commit install`
+
+Hint: You can also run the formatters manually at any time with the following command: `pre-commit run --all-files`
+
 
 ## Django Compatibility Matrix
 

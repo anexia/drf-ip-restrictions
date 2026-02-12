@@ -1,10 +1,11 @@
 from django.urls import include, path
+
 from rest_framework import routers
 
 from testapp.views import (
-    PublicInfoViewSet,
-    PrivateInfoViewSet,
     PartiallyPrivateInfoViewSet,
+    PrivateInfoViewSet,
+    PublicInfoViewSet,
 )
 
 router = routers.DefaultRouter()

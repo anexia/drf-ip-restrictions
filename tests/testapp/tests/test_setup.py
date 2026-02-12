@@ -2,7 +2,7 @@ from django.apps import apps
 from django.conf import settings
 from django.test import SimpleTestCase
 
-from testapp.models import PublicInfo, PrivateInfo, PartiallyPrivateInfo
+from testapp.models import PartiallyPrivateInfo, PrivateInfo, PublicInfo
 
 
 class TestSetup(SimpleTestCase):
@@ -13,5 +13,6 @@ class TestSetup(SimpleTestCase):
         self.assertIs(apps.get_model("testapp", "PublicInfo"), PublicInfo)
         self.assertIs(apps.get_model("testapp", "PrivateInfo"), PrivateInfo)
         self.assertIs(
-            apps.get_model("testapp", "PartiallyPrivateInfo"), PartiallyPrivateInfo
+            apps.get_model("testapp", "PartiallyPrivateInfo"),
+            PartiallyPrivateInfo,
         )
