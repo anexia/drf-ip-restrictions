@@ -1,8 +1,9 @@
-from drf_ip_restrictions.settings import ip_restriction_settings
 from ipware import get_client_ip
 
+from drf_ip_restrictions.settings import ip_restriction_settings
 
-class AllowedIpList(object):
+
+class AllowedIpList:
     """
     Ensure the request's IP address is on the ip white list configured in Django settings.
     """

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from testapp.models import PublicInfo, PrivateInfo, PartiallyPrivateInfo
+from testapp.models import PartiallyPrivateInfo, PrivateInfo, PublicInfo
 
 
 class PublicInfoSerializer(serializers.ModelSerializer):

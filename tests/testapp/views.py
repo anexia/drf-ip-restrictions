@@ -1,13 +1,14 @@
-from drf_ip_restrictions import AllowedIpList
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import PublicInfo, PrivateInfo, PartiallyPrivateInfo
+from drf_ip_restrictions import AllowedIpList
+
+from .models import PartiallyPrivateInfo, PrivateInfo, PublicInfo
 from .serializers import (
-    PublicInfoSerializer,
-    PrivateInfoSerializer,
     PartiallyPrivateInfoSerializer,
+    PrivateInfoSerializer,
+    PublicInfoSerializer,
 )
 
 

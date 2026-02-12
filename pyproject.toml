@@ -28,7 +28,44 @@ dependencies = [
     "django-ipware>=7.0.1,<7.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=4.0.1,<4.1",
+]
+
 
 [project.urls]
 Homepage = "https://github.com/anexia/drf-ip-restrictions"
 Repository = "https://github.com/anexia/drf-ip-restrictions"
+
+[tool.ruff]
+line-length = 120
+respect-gitignore = true
+extend-exclude = [".venv", "__pycache__"]
+show-fixes = true
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = ["A", "B", "C", "E", "F", "I", "W", "T20", "LOG", "UP", "RUF010", "RUF019"]
+ignore = ["E203", "E266", "E501", "F403", "F405"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["drf-attachment"]
+section-order = [
+    "future",
+    "standard-library",
+    "django",
+    "djangorestframework",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]
+"djangorestframework" = ["rest_framework"]
+
+[tool.ruff.lint.per-file-ignores]
+"apps.py" = ["F401"]
